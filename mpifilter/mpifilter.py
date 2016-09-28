@@ -12,15 +12,18 @@ if rank == 0:
     len_data = len(data)
     workloads = [[] for _ in range(size)]
     num_items_per_workload = len_data // size
-    if len_data % size:
-        num_items_per_workload += 1
+    remainder = len_data % size
     i = 0
     for workload in workloads:
         num_in_workload = 0
-        while num_in_workload < num_items_per_workload and i < len_data:
+        while num_in_workload < num_items_per_workload:
             workload.append(data[i])
             num_in_workload += 1
             i += 1
+        if remainder > 0:
+            workload.append(data[i])
+            i += 1
+            remainder -= 1
 else:
     workloads = []
 
