@@ -1,2 +1,6 @@
 *.pyc
 .tags
+*.class
+*.jar
+*META-INF*
+*Makefile
